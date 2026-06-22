@@ -1,0 +1,10 @@
+data/
+users.db
+output.log
+*.pkl
+*.db
+*.log
+*.sqlite
+__pycache__/
+.env
+venv/
