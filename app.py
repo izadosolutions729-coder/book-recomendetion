@@ -265,9 +265,9 @@ def main():
     # Sidebar
     st.sidebar.markdown(f"<div style='text-align:center; padding: 20px;'><h2 style='color:#f8fafc; margin-bottom:0;'>Book Recommendation</h2><p style='color:#6366f1; font-size:0.8rem;'>{st.session_state.auth['user']}</p></div>", unsafe_allow_html=True)
     
-    menu_options = ["🏠 Dashboard", "📈 Analytics"]
+    menu_options = ["🏠 Dashboard"]
     if st.session_state.auth['user'] == "izadosolutions729@gmail.com":
-        menu_options.append("🛠️ Admin Panel")
+        menu_options.extend(["📈 Analytics", "🛠️ Admin Panel"])
         
     page = st.sidebar.radio("Navigation", menu_options)
     if st.sidebar.button("Log Out"):
@@ -346,12 +346,14 @@ def main():
         c1, c2 = st.columns(2)
         with c1:
             g_counts = assets['books']['tag_name'].str.split(',').explode().str.strip().value_counts().head(8)
-            fig = px.bar(g_counts, title="Top Genres", color=g_counts.index, color_discrete_sequence=px.colors.sequential.Plotly3)
+            fig = px.bar(g_counts, title="Top Genres", color=g_counts.index, template="plotly_dark")
+            fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig, use_container_width=True)
         with c2:
             df_plot = assets['books'].loc[:, ~assets['books'].columns.duplicated()]
             fig = px.scatter(df_plot, x="ratings_count", y="average_rating", color="average_rating", 
-                             size="ratings_count", title="Rating vs Popularity", hover_name="title")
+                             size="ratings_count", title="Rating vs Popularity", hover_name="title", template="plotly_dark")
+            fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig, use_container_width=True)
 
     elif view == 'admin panel':
