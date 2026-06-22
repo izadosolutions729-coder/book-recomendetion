@@ -1,0 +1,19 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Data
+# Note: Keeping processed_model.pkl as it is now optimized to 55MB
+# similarity.pkl and others are large and replaced by the new pickle
+data/similarity.pkl
+data/books_list.pkl
+
+# Environment
+.env
+
+# Vercel
+.vercel/
