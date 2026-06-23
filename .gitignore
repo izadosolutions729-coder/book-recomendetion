@@ -5,15 +5,18 @@ __pycache__/
 .venv/
 env/
 venv/
+*.log
 
 # Data
-# Note: Keeping processed_model.pkl as it is now optimized to 55MB
-# similarity.pkl and others are large and replaced by the new pickle
+# Data assets
 data/similarity.pkl
 data/books_list.pkl
+!data/processed_model.pkl
 
-# Environment
-.env
+
+# Databases
+users.db
 
 # Vercel
 .vercel/
+.vercelignore

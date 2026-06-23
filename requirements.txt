@@ -2,8 +2,4 @@ streamlit
 pandas
 numpy
 scikit-learn
-requests
-pillow
 plotly
-scipy
-SpeechRecognition

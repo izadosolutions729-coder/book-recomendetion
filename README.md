@@ -1,46 +1,42 @@
-# 📚 Bibliophile Pro: The Next-Gen Book Discovery Platform
+# 📚 Book Recommendation: AI-Powered Discovery Engine
 
-Bibliophile Pro is a state-of-the-art book recommendation system that leverages advanced Machine Learning, a Hybrid Recommendation Engine, and modern UI aesthetics to provide a premium reading discovery experience.
+Book Recommendation is a premium book recommendation system that combines advanced Machine Learning with modern UI aesthetics to provide a sophisticated reading discovery experience.
 
 ## ✨ Core Features
 
-*   **Hybrid Intelligence**: Combines **Content-Based Filtering** (TF-IDF) and **Collaborative Filtering** (KNN) to provide hyper-personalized suggestions.
-*   **Persistent User Ecosystem**: Secure login/signup system with SQLite integration to save reading history and favorite books.
-*   **Pro Analytics**: Interactive data visualization dashboard powered by Plotly for exploring library trends and reader behavior.
-*   **AI-Powered Narratives**: Dynamic summaries generated for over 10,000 titles to help you decide your next read instantly.
-*   **Ultra-Modern UI**: Glassmorphism-inspired dark mode interface with smooth transitions and high-performance layout.
-*   **Smart Search & Discovery**: Real-time search with similarity scoring across metadata.
+*   **Intelligent Discovery**: Leverages **TF-IDF Vectorization** and **Cosine Similarity** to provide hyper-personalized suggestions based on your interests.
+*   **Curated Trends**: Bayesian-weighted global popularity scoring to showcase the best of literature.
+*   **User Ecosystem**: Seamless passwordless authentication for Gmail users with persistent favorite tracking via SQLite.
+*   **Pro Analytics**: Interactive data visualization dashboard for exploring library distributions and popularity trends.
+*   **Elite UI**: A high-performance, Glassmorphism-inspired dark mode interface built for speed and elegance.
+*   **Smart Filter**: Multidimensional search across titles, authors, and genres.
 
 ## 🛠️ Technology Stack
 
-*   **Frontend**: Streamlit (Advanced UI/UX Customization)
-*   **Intelligence**: Scikit-Learn (TF-IDF, Nearest Neighbors), SciPy (Sparse Matrices)
-*   **Data Processing**: Pandas, NumPy
+*   **Frontend**: [Streamlit](https://streamlit.io/) (Custom Styled Interface)
+*   **Intelligence**: [Scikit-Learn](https://scikit-learn.org/) (Feature Extraction & Similarity)
+*   **Data Engine**: Pandas & NumPy
 *   **Visualization**: Plotly Express
-*   **Persistence**: SQLite3 (Secure relational storage)
-*   **Multimedia**: SpeechRecognition (Voice Search), Pillow (Image processing)
+*   **Persistence**: SQLite3
 
-## 🚀 Deployment Guide
+## 🚀 Getting Started
 
-### 1. Prerequisites
-Ensure you have Python 3.10+ installed.
-
-### 2. Setup Environment
-Install all professional dependencies:
+### 1. Installation
+Clone the repository and install the optimized dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Initialize AI Pipeline
-Generate the ML assets and populate the database (automatic on first run, or manual via):
+### 2. Initialize AI Assets
+Process the Goodbooks-10k dataset and generate the recommendation engine:
 ```bash
 python model_gen.py
 ```
 
-### 4. Launch Application
+### 3. Launch the Platform
 ```bash
 streamlit run app.py
 ```
 
 ---
-*Developed as a premier showcase of Machine Learning and Modern Web Design.*
+*Developed with a focus on professional aesthetics and high-performance ML architectures.*
