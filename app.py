@@ -260,7 +260,7 @@ def main():
         # Discovery Module
         col1, col2 = st.columns([3, 1])
         with col1:
-            clean_titles = sorted(assets['books']['title'].unique())
+            clean_titles = sorted([str(t) for t in assets['books']['title'].unique()])
             q = st.selectbox("Search for a masterpiece", [""] + clean_titles, index=0)
         with col2:
             genres = ['All Genres'] + sorted(['Fiction', 'Mystery', 'Romance', 'Science-Fiction', 'Fantasy', 'Biography', 'History', 'Horror', 'Thriller', 'Young-Adult'])
