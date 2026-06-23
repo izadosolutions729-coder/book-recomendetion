@@ -312,8 +312,8 @@ def main():
             st.subheader(f"Results ({len(results.head(10))})")
             res_data = results.head(10)
             cols = st.columns(5)
-            for idx, row in res_data.iterrows():
-                with cols[idx % 5]: render_book_card(row, f"search_{idx}")
+            for i, (_, row) in enumerate(res_data.iterrows()):
+                with cols[i % 5]: render_book_card(row, f"search_{i}")
         else:
             # Recommendations
             st.subheader("🎯 Personalized for You")
