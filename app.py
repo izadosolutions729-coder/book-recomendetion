@@ -45,69 +45,94 @@ def apply_custom_styles():
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        /* Center main container */
+        .main .block-container {
+            max-width: 1200px;
+            padding-top: 3rem;
+            padding-bottom: 5rem;
+        }
+
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 700;
             background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
             margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .stat-card {
-            background: var(--card-bg);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 24px;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin: 10px 0 0 0;
+            font-weight: 700;
         }
 
         .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(16px);
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 20px;
-            transition: all 0.3s ease;
+            border-radius: 24px;
+            padding: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--primary);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-glow);
+            background: rgba(30, 41, 59, 0.6);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px var(--primary-glow);
         }
 
         .book-cover {
-            border-radius: 12px;
+            border-radius: 16px;
             width: 100%;
-            height: 240px;
+            aspect-ratio: 2/3;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 16px -4px rgba(0,0,0,0.3);
         }
 
         .stButton>button {
-            border-radius: 50px;
-            padding: 8px 24px;
+            border-radius: 12px;
+            padding: 10px 24px;
             font-weight: 600;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
             color: white;
             border: none;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
         }
         
         .stButton>button:hover {
-            background: #1d4ed8;
-            box-shadow: 0 0 20px var(--primary-glow);
+            transform: scale(1.02);
+            box-shadow: 0 0 25px var(--primary-glow);
         }
 
-        /* Selection Bar Styling */
+        /* Improved selectbox styling */
         div[data-baseweb="select"] {
-            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6) !important;
+            border-radius: 14px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
+
         </style>
     """, unsafe_allow_html=True)
 
@@ -189,15 +214,18 @@ def render_book_card(book, key):
     st.markdown(f"""
         <div class="glass-card">
             <img src="{book['image_url']}" class="book-cover">
-            <h4 style="margin:0; height: 3.5rem; overflow:hidden;">{book['title']}</h4>
-            <p style="color: #94a3b8; font-size: 0.85rem;">{book['authors']}</p>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                <span style="color:#fbbf24; font-weight:700;">⭐ {book['average_rating']}</span>
-                <span style="font-size:0.75rem; background:rgba(99,102,241,0.2); padding:2px 8px; border-radius:10px;">{book['tag_name'].split(',')[0]}</span>
+            <div style="flex-grow: 1;">
+                <h4 style="margin:0 0 8px 0; font-size: 1rem; line-height: 1.4; height: 2.8rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{book['title']}</h4>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{book['authors']}</p>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+                <span style="color:#fbbf24; font-weight:700; font-size: 0.9rem;">⭐ {book['average_rating']}</span>
+                <span style="font-size:0.7rem; background:rgba(37, 99, 235, 0.2); color: #60a5fa; padding:4px 10px; border-radius:8px; font-weight: 600;">{str(book['tag_name']).split(',')[0].upper()}</span>
             </div>
         </div>
     """, unsafe_allow_html=True)
-    if st.button("Explore Details", key=key, use_container_width=True):
+    st.write("") # Spacer
+    if st.button("Details", key=key, use_container_width=True):
         st.session_state.selected_bid = book['book_id']
         st.session_state.view_details = True
         st.rerun()
@@ -210,6 +238,7 @@ def main():
     if not assets:
         st.error("⚠️ System components missing. Please contact the administrator.")
         return
+
 
     # Session Initialization
     if 'auth' not in st.session_state: 
@@ -237,34 +266,41 @@ def main():
     # --- AUTHENTICATED EXPERIENCE ---
     st.sidebar.markdown(f"<div style='padding: 20px;'><h2>Book Recommendation</h2><p style='color:#6366f1;'>{st.session_state.auth['user']}</p></div>", unsafe_allow_html=True)
     
-    options = ["Dashboard", "Analytics"]
+    options = ["Dashboard"]
     if st.session_state.auth['user'] == "izadosolutions729@gmail.com":
-        options.append("Admin")
+        options.extend(["Analytics", "Admin"])
         
     nav = st.sidebar.radio("Navigation", options)
+
     if st.sidebar.button("Log Out"):
         st.session_state.auth = {'logged': False, 'user': None}
         st.rerun()
 
     if nav == "Dashboard":
         # Metrics
+        st.markdown("<div style='margin-bottom: 2rem;'></div>", unsafe_allow_html=True)
         m1, m2, m3, m4 = st.columns(4)
-        m1.markdown("<div class='stat-card'><small>Collection</small><h3>10,000+</h3></div>", unsafe_allow_html=True)
-        faves = UserDB.get_favorites(st.session_state.auth['user'])
-        m2.markdown(f"<div class='stat-card'><small>Favorites</small><h3>{len(faves)}</h3></div>", unsafe_allow_html=True)
-        m3.markdown("<div class='stat-card'><small>System Status</small><h3 style='color:#10b981;'>Online</h3></div>", unsafe_allow_html=True)
-        m4.markdown("<div class='stat-card'><small>Discovery Rate</small><h3>98%</h3></div>", unsafe_allow_html=True)
+        with m1: st.markdown("<div class='stat-card'><small style='color:#94a3b8; text-transform:uppercase; letter-spacing:1px;'>Total Library</small><h3>10,000+</h3></div>", unsafe_allow_html=True)
+        with m2: 
+            faves = UserDB.get_favorites(st.session_state.auth['user'])
+            st.markdown(f"<div class='stat-card'><small style='color:#94a3b8; text-transform:uppercase; letter-spacing:1px;'>My Favorites</small><h3>{len(faves)}</h3></div>", unsafe_allow_html=True)
+        with m3: st.markdown("<div class='stat-card'><small style='color:#94a3b8; text-transform:uppercase; letter-spacing:1px;'>Service Status</small><h3 style='color:#10b981;'>ONLINE</h3></div>", unsafe_allow_html=True)
+        with m4: st.markdown("<div class='stat-card'><small style='color:#94a3b8; text-transform:uppercase; letter-spacing:1px;'>Precision</small><h3>98.4%</h3></div>", unsafe_allow_html=True)
 
-        st.divider()
+        st.markdown("<div style='margin-bottom: 3rem;'></div>", unsafe_allow_html=True)
 
         # Discovery Module
-        col1, col2 = st.columns([3, 1])
+        st.markdown("### 🔍 Discovery Engine")
+        col1, col2 = st.columns([2, 1])
         with col1:
             clean_titles = sorted([str(t) for t in assets['books']['title'].unique()])
-            q = st.selectbox("Search for a masterpiece", [""] + clean_titles, index=0)
+            q = st.selectbox("Search across our premium collection", [""] + clean_titles, index=0, placeholder="Type a book title...")
         with col2:
             genres = ['All Genres'] + sorted(['Fiction', 'Mystery', 'Romance', 'Science-Fiction', 'Fantasy', 'Biography', 'History', 'Horror', 'Thriller', 'Young-Adult'])
-            sel_genre = st.selectbox("Genre Filter", genres)
+            sel_genre = st.selectbox("Filter by Literary Genre", genres)
+
+        st.markdown("<div style='margin-bottom: 2rem;'></div>", unsafe_allow_html=True)
+
 
         if q or sel_genre != 'All Genres':
             results = assets['books'].copy()
